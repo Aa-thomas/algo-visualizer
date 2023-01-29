@@ -7,12 +7,18 @@ export default function PathVisualizer() {
 	useEffect(() => {
 		const nodesArray = [];
 
-		for (let row = 0; row < 45; row++) {
-			const currentRow = [];
-			for (let col = 0; col < 15; col++) {
-				currentRow.push([]);
+		for (let col = 0; col < 45; col++) {
+			const currentColumn = [];
+			for (let row = 0; row < 15; row++) {
+				const currentNode = {
+					row,
+					col,
+					isOrigin: row === 2 && col === 12,
+					isTarget: row === 10 && col === 15,
+				};
+				currentColumn.push(currentNode);
 			}
-			nodesArray.push(currentRow);
+			nodesArray.push(currentColumn);
 		}
 		setNodes(nodesArray);
 	}, []);
@@ -23,7 +29,14 @@ export default function PathVisualizer() {
 				return (
 					<div className="column" key={rowIndex}>
 						{row.map((node, nodeIndex) => {
-							return <Node key={nodeIndex} />;
+							const { isOrigin, isTarget } = node;
+							return (
+								<Node
+									key={nodeIndex}
+									isOrigin={isOrigin}
+									isTarget={isTarget}
+								/>
+							);
 						})}
 					</div>
 				);

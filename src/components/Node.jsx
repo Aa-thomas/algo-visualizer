@@ -1,5 +1,8 @@
-import React from 'react';
+export default function Node({ isOrigin, isTarget }) {
+	let nodeClassName;
+	if (isTarget) nodeClassName = 'node-target';
+	else if (isOrigin) nodeClassName = 'node-origin';
+	else nodeClassName = '';
 
-export default function Node() {
-	return <div className="node"></div>;
+	return <div className={`node ${nodeClassName}`}></div>;
 }
