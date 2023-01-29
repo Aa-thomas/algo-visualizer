@@ -7,7 +7,7 @@ export default function PathVisualizer() {
 	useEffect(() => {
 		const nodesArray = [];
 
-		for (let row = 0; row < 50; row++) {
+		for (let row = 0; row < 45; row++) {
 			const currentRow = [];
 			for (let col = 0; col < 15; col++) {
 				currentRow.push([]);

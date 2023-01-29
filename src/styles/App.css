@@ -1,6 +1,11 @@
+.App {
+  margin: 0 2.5%;
+}
+
 .grid {
   display: flex;
   flex-wrap: nowrap;
+  width: 95%;
   margin: 0 auto;
   padding: 0;
 }
@@ -11,7 +16,7 @@
 }
 
 .node {
-  width: 25px;
-  height: 25px;
-  border: 2px solid ;
+  width: clamp(10px, 1.8vw, 25px);
+  height: clamp(10px, 1.8vw, 25px);
+  border: 1px solid gray;
 }
