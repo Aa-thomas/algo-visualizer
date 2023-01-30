@@ -16,8 +16,8 @@
 }
 
 .node {
-  width: clamp(10px, 1.8vw, 25px);
-  height: clamp(10px, 1.8vw, 25px);
+  width: clamp(4px, 1.8vw, 25px);
+  height: clamp(4px, 1.8vw, 25px);
   border: 1px solid gray;
 }
 
@@ -27,4 +27,9 @@
 
 .node-target{
   background-color: #00ff00;
+}
+
+.MuiAppBar {
+  display: flex;
+  flex-direction: row;
 }

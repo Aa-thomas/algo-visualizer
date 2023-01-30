@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import Node from './Node';
+import Chance from 'chance';
 
 export default function PathVisualizer() {
-	const [nodes, setNodes] = useState([]);
+	const [grid, setGrid] = useState([]);
 
+	// This function creates our grid and stores the state in `grid` variable
 	useEffect(() => {
-		const nodesArray = [];
+		const nodes = [];
 
 		for (let col = 0; col < 45; col++) {
 			const currentColumn = [];
@@ -15,24 +17,32 @@ export default function PathVisualizer() {
 					col,
 					isOrigin: row === 2 && col === 12,
 					isTarget: row === 10 && col === 15,
+					isWall: false,
+					weight: 1,
 				};
 				currentColumn.push(currentNode);
 			}
-			nodesArray.push(currentColumn);
+			nodes.push(currentColumn);
 		}
-		setNodes(nodesArray);
+		setGrid(nodes);
 	}, []);
+
+	// const distances = useMemo(() => {
+	// 	// code to calculate the distance from sourceNode to each node
+	// }, [sourceNode, grid]);
 
 	return (
 		<div className="grid">
-			{nodes.map((row, rowIndex) => {
+			{/* Map through `grid` making `Node` component for each node */}
+			{grid.map((row) => {
+				const chance = new Chance();
 				return (
-					<div className="column" key={rowIndex}>
-						{row.map((node, nodeIndex) => {
+					<div className="column" key={chance.guid()}>
+						{row.map((node) => {
 							const { isOrigin, isTarget } = node;
 							return (
 								<Node
-									key={nodeIndex}
+									key={chance.guid()}
 									isOrigin={isOrigin}
 									isTarget={isTarget}
 								/>
