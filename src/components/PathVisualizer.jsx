@@ -4,7 +4,10 @@ import Chance from 'chance';
 
 export default function PathVisualizer() {
 	const [grid, setGrid] = useState([]);
+	const [distances, setDistances] = useState(grid);
 
+	// This is where we implement Djikstra
+	const djikstra = () => {};
 	// This function creates our grid and stores the state in `grid` variable
 	useEffect(() => {
 		const nodes = [];
@@ -19,6 +22,7 @@ export default function PathVisualizer() {
 					isTarget: row === 10 && col === 15,
 					isWall: false,
 					weight: 1,
+					distance: Infinity,
 				};
 				currentColumn.push(currentNode);
 			}
@@ -39,12 +43,16 @@ export default function PathVisualizer() {
 				return (
 					<div className="column" key={chance.guid()}>
 						{row.map((node) => {
-							const { isOrigin, isTarget } = node;
 							return (
 								<Node
 									key={chance.guid()}
-									isOrigin={isOrigin}
-									isTarget={isTarget}
+									isOrigin={node.isOrigin}
+									isTarget={node.isTarget}
+									col={node.col}
+									row={node.row}
+									isWall={node.isWall}
+									weight={node.weight}
+									distance={node.distance}
 								/>
 							);
 						})}
