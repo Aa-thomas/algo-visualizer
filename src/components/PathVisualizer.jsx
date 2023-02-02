@@ -9,12 +9,12 @@ export default function PathVisualizer() {
 	// This is where we implement Djikstra
 	const djikstra = () => {};
 	// This function creates our grid and stores the state in `grid` variable
-	useEffect(() => {
+	const createGrid = (width, height) => {
 		const nodes = [];
 
-		for (let col = 0; col < 45; col++) {
+		for (let col = 0; col < width; col++) {
 			const currentColumn = [];
-			for (let row = 0; row < 15; row++) {
+			for (let row = 0; row < height; row++) {
 				const currentNode = {
 					row,
 					col,
@@ -29,6 +29,10 @@ export default function PathVisualizer() {
 			nodes.push(currentColumn);
 		}
 		setGrid(nodes);
+	};
+
+	useEffect(() => {
+		createGrid(60, 50);
 	}, []);
 
 	// const distances = useMemo(() => {
@@ -42,17 +46,17 @@ export default function PathVisualizer() {
 				const chance = new Chance();
 				return (
 					<div className="column" key={chance.guid()}>
-						{row.map((node) => {
+						{row.map((currentNode) => {
 							return (
 								<Node
 									key={chance.guid()}
-									isOrigin={node.isOrigin}
-									isTarget={node.isTarget}
-									col={node.col}
-									row={node.row}
-									isWall={node.isWall}
-									weight={node.weight}
-									distance={node.distance}
+									isOrigin={currentNode.isOrigin}
+									isTarget={currentNode.isTarget}
+									col={currentNode.col}
+									row={currentNode.row}
+									isWall={currentNode.isWall}
+									weight={currentNode.weight}
+									distance={currentNode.distance}
 								/>
 							);
 						})}
