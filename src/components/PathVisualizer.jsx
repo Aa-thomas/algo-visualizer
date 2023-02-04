@@ -1,37 +1,15 @@
 import { useEffect, useState } from 'react';
-import Node from './Node';
+import GridNode from './GridNode';
 import Chance from 'chance';
 import Header from './Header';
-
+import { createGrid } from '../utilities/createGrid';
 export default function PathVisualizer() {
 	const [grid, setGrid] = useState([]);
 	const [distances, setDistances] = useState(grid);
 
-	// This function creates our grid and stores the state in `grid` variable
-	const createGrid = (width, height) => {
-		const nodes = [];
-
-		for (let col = 0; col < width; col++) {
-			const currentColumn = [];
-			for (let row = 0; row < height; row++) {
-				const currentNode = {
-					row,
-					col,
-					isOrigin: row === 2 && col === 2,
-					isTarget: row === 8 && col === 8,
-					isWall: false,
-					weight: 1,
-					distance: Infinity,
-				};
-				currentColumn.push(currentNode);
-			}
-			nodes.push(currentColumn);
-		}
-		setGrid(nodes);
-	};
-
+	// create our grid
 	useEffect(() => {
-		createGrid(10, 10);
+		setGrid(createGrid(10, 10));
 	}, []);
 
 	// This is where we implement Djikstra
@@ -52,7 +30,7 @@ export default function PathVisualizer() {
 						<div className="column" key={chance.guid()}>
 							{row.map((currentNode) => {
 								return (
-									<Node
+									<GridNode
 										key={chance.guid()}
 										isOrigin={currentNode.isOrigin}
 										isTarget={currentNode.isTarget}
