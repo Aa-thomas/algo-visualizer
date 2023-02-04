@@ -18,3 +18,18 @@ import { useState } from 'react';
 // node by following the path from the target node back to the source node.
 // 7. Use the ^useMemo^ hook to remember the calculations done in the algorithm to make
 // it faster.
+
+export default function dijkstra(grid) {
+	// const [distances, setDistances] = useState([]);
+	const visitedNodes = [];
+	const unvisitedNodes = [...grid];
+	const sourceNode = unvisitedNodes[0][0];
+	sourceNode.distance = 0;
+
+	console.log('cource------>', sourceNode);
+
+	while (unvisitedNodes.length > 0) {
+		let node = unvisitedNodes.shift();
+		visitedNodes.push(node);
+	}
+}

@@ -1,10 +1,13 @@
-export default function Header() {
+import dijkstra from '../algorithms/dijkstra';
+
+export default function Header({ grid }) {
 	const clearBoardOnClick = () => {
 		// This will clear and reset the board to initial state
 	};
 
 	const visualizeOnClick = () => {
 		// This will visualize the algorithm
+		dijkstra(grid);
 	};
 
 	// Algorithms

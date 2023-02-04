@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import Node from './Node';
 import Chance from 'chance';
+import Header from './Header';
 
 export default function PathVisualizer() {
 	const [grid, setGrid] = useState([]);
 	const [distances, setDistances] = useState(grid);
 
-	// This is where we implement Djikstra
-	const djikstra = () => {};
 	// This function creates our grid and stores the state in `grid` variable
 	const createGrid = (width, height) => {
 		const nodes = [];
@@ -18,8 +17,8 @@ export default function PathVisualizer() {
 				const currentNode = {
 					row,
 					col,
-					isOrigin: row === 2 && col === 12,
-					isTarget: row === 10 && col === 15,
+					isOrigin: row === 2 && col === 2,
+					isTarget: row === 8 && col === 8,
 					isWall: false,
 					weight: 1,
 					distance: Infinity,
@@ -32,37 +31,43 @@ export default function PathVisualizer() {
 	};
 
 	useEffect(() => {
-		createGrid(60, 50);
+		createGrid(10, 10);
 	}, []);
+
+	// This is where we implement Djikstra
 
 	// const distances = useMemo(() => {
 	// 	// code to calculate the distance from sourceNode to each node
 	// }, [sourceNode, grid]);
 
 	return (
-		<div className="grid">
-			{/* Map through `grid` making `Node` component for each node */}
-			{grid.map((row) => {
-				const chance = new Chance();
-				return (
-					<div className="column" key={chance.guid()}>
-						{row.map((currentNode) => {
-							return (
-								<Node
-									key={chance.guid()}
-									isOrigin={currentNode.isOrigin}
-									isTarget={currentNode.isTarget}
-									col={currentNode.col}
-									row={currentNode.row}
-									isWall={currentNode.isWall}
-									weight={currentNode.weight}
-									distance={currentNode.distance}
-								/>
-							);
-						})}
-					</div>
-				);
-			})}
-		</div>
+		<>
+			{' '}
+			<Header grid={grid} />
+			<div className="grid">
+				{/* Map through `grid` making `Node` component for each node */}
+				{grid.map((row) => {
+					const chance = new Chance();
+					return (
+						<div className="column" key={chance.guid()}>
+							{row.map((currentNode) => {
+								return (
+									<Node
+										key={chance.guid()}
+										isOrigin={currentNode.isOrigin}
+										isTarget={currentNode.isTarget}
+										col={currentNode.col}
+										row={currentNode.row}
+										isWall={currentNode.isWall}
+										weight={currentNode.weight}
+										distance={currentNode.distance}
+									/>
+								);
+							})}
+						</div>
+					);
+				})}
+			</div>
+		</>
 	);
 }
