@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 // 1. Make a state called distances to save the distance of each node from the source node.
 // 2. Set the distances to be infinite for every node except for the source node, which
@@ -19,17 +19,25 @@ import { useState } from 'react';
 // 7. Use the ^useMemo^ hook to remember the calculations done in the algorithm to make
 // it faster.
 
-export default function dijkstra(grid) {
+function dijkstra(grid) {
+	// Check that `grid` argument is an Array and not empty
+	if (!Array.isArray(grid))
+		throw new Error('The `grid` argument must be a 2-dimensional Array.');
+	if (!grid.length)
+		throw new Error('The `grid` argument cannot be an empty array.');
+
 	// const [distances, setDistances] = useState([]);
 	const visitedNodes = [];
 	const unvisitedNodes = [...grid];
 	const sourceNode = unvisitedNodes[0][0];
 	sourceNode.distance = 0;
 
-	console.log('cource------>', sourceNode);
+	console.log('source------>', sourceNode);
 
 	while (unvisitedNodes.length > 0) {
 		let node = unvisitedNodes.shift();
 		visitedNodes.push(node);
 	}
 }
+
+module.exports = dijkstra;

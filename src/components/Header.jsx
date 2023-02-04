@@ -15,32 +15,54 @@ export default function Header({ grid }) {
 	return (
 		<header>
 			<select name="algo-speed" id="algo-speed" placeholder="Speed">
-				<option value="slow">Slow</option>
-				<option value="medium">Medium</option>
-				<option value="fast">Fast</option>
+				<option value="slow" disabled>
+					Slow
+				</option>
+				<option value="medium" disabled>
+					Medium
+				</option>
+				<option value="fast" disabled>
+					Fast
+				</option>
 			</select>
 			<select name="algo-additionals" id="algo-additionals">
 				Add
-				<option value="wall">Wall</option>
-				<option value="maze">Maze</option>
+				<option value="wall" disabled>
+					Wall
+				</option>
+				<option value="maze" disabled>
+					Maze
+				</option>
 			</select>
 			<select
 				name="algo-selector"
 				id="algo-selector"
 				placeholder="Choose Your Algorithm">
-				<optgroup>
-					Pathfinding
+				<optgroup label="Pathfinding">
 					<option value="djikstra">Djikstra</option>
-					<option value="astar">A*</option>
-					<option value="bfs">Breadth First Search</option>
-					<option value="dfs">Depth First Search</option>
+					<option value="astar" disabled>
+						A*
+					</option>
+					<option value="bfs" disabled>
+						Breadth First Search
+					</option>
+					<option value="dfs" disabled>
+						Depth First Search
+					</option>
 				</optgroup>
-				<optgroup>
-					Sorting
-					<option value="bubble">Bubble Sort</option>
-					<option value="insertion">Insertion Sort</option>
-					<option value="merge">Merge Sort</option>
-					<option value="quick">Quick Sort</option>
+				<optgroup label="Sorting">
+					<option value="bubble" disabled>
+						Bubble Sort
+					</option>
+					<option value="insertion" disabled>
+						Insertion Sort
+					</option>
+					<option value="merge" disabled>
+						Merge Sort
+					</option>
+					<option value="quick" disabled>
+						Quick Sort
+					</option>
 				</optgroup>
 			</select>
 			<button onClick={clearBoardOnClick}> Clear</button>
