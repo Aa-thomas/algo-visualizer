@@ -1,27 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import GridNode from './GridNode';
 import Chance from 'chance';
 import Header from './Header';
 import { createGrid } from '../utilities/createGrid';
+
+const COLUMNS = 10;
+const ROWS = 10;
+
 export default function PathVisualizer() {
 	const [grid, setGrid] = useState([]);
 	const [distances, setDistances] = useState(grid);
 
 	// create our grid
 	useEffect(() => {
-		setGrid(createGrid(10, 10));
+		setGrid(createGrid(COLUMNS, ROWS));
 	}, []);
-
-	// This is where we implement Djikstra
-
-	// const distances = useMemo(() => {
-	// 	// code to calculate the distance from sourceNode to each node
-	// }, [sourceNode, grid]);
 
 	return (
 		<>
 			{' '}
-			<Header grid={grid} />
+			<Header
+				grid={grid}
+				clearGrid={() => setGrid(createGrid(COLUMNS, ROWS))}
+			/>
 			<div className="grid">
 				{/* Map through `grid` making `Node` component for each node */}
 				{grid.map((row) => {
@@ -32,8 +33,8 @@ export default function PathVisualizer() {
 								return (
 									<GridNode
 										key={chance.guid()}
-										isOrigin={currentNode.isOrigin}
-										isTarget={currentNode.isTarget}
+										isSourceNode={currentNode.isSourceNode}
+										isTargetNode={currentNode.isTargetNode}
 										col={currentNode.col}
 										row={currentNode.row}
 										isWall={currentNode.isWall}

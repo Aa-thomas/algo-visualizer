@@ -1,13 +1,14 @@
-import dijkstra from '../algorithms/dijkstra';
+import dijkstra, { animateDijkstra } from '../algorithms/dijkstra';
+import { createGrid } from '../utilities/createGrid';
 
-export default function Header({ grid }) {
+export default function Header({ grid, clearGrid }) {
 	const clearBoardOnClick = () => {
-		// This will clear and reset the board to initial state
+		clearGrid();
 	};
 
 	const visualizeOnClick = () => {
-		// This will visualize the algorithm
-		dijkstra(grid);
+		const nodes = dijkstra(grid);
+		animateDijkstra(nodes, 100);
 	};
 
 	// Algorithms

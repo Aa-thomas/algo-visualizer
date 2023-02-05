@@ -1,8 +1,16 @@
-export default function GridNode({ isOrigin, isTarget }) {
+import { useState } from 'react';
+
+export default function (props) {
+	const [visitedClass, setVisitedClass] = useState('');
 	let nodeClassName;
-	if (isTarget) nodeClassName = 'node-target';
-	else if (isOrigin) nodeClassName = 'node-origin';
+	if (props.isTargetNode) nodeClassName = 'node-target';
+	else if (props.isSourceNode) nodeClassName = 'node-origin';
 	else nodeClassName = '';
 
-	return <div className={`node ${nodeClassName}`}></div>;
+	return (
+		<div
+			id={`node-${props.row}-${props.col}`}
+			className={`node ${nodeClassName} ${visitedClass}`}
+			onClick={() => setVisitedClass('change')}></div>
+	);
 }
