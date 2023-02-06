@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function (props) {
-	const [visitedClass, setVisitedClass] = useState('');
+	const [wallClass, setwallClass] = useState('');
 	let nodeClassName;
 	if (props.isTargetNode) nodeClassName = 'node-target';
 	else if (props.isSourceNode) nodeClassName = 'node-origin';
@@ -10,7 +10,7 @@ export default function (props) {
 	return (
 		<div
 			id={`node-${props.row}-${props.col}`}
-			className={`node ${nodeClassName} ${visitedClass}`}
-			onClick={() => setVisitedClass('change')}></div>
+			className={`node ${nodeClassName} ${wallClass}`}
+			onClick={() => setwallClass('wall')}></div>
 	);
 }
