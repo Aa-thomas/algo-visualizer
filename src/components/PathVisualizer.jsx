@@ -4,8 +4,8 @@ import Chance from 'chance';
 import Header from './Header';
 import { createGrid } from '../utilities/createGrid';
 
-const COLUMNS = 10;
-const ROWS = 10;
+const COLUMNS = 50;
+const ROWS = 50;
 
 export default function PathVisualizer() {
 	const [grid, setGrid] = useState([]);

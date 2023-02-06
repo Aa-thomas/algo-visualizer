@@ -1,30 +1,33 @@
+import { useState } from 'react';
 import dijkstra, { animateDijkstra } from '../algorithms/dijkstra';
 import { createGrid } from '../utilities/createGrid';
 
 export default function Header({ grid, clearGrid }) {
+	const [speed, setSpeed] = useState(50);
+
 	const clearBoardOnClick = () => {
 		clearGrid();
 	};
 
 	const visualizeOnClick = () => {
 		const nodes = dijkstra(grid);
-		animateDijkstra(nodes, 100);
+		animateDijkstra(nodes, speed);
 	};
 
 	// Algorithms
 
 	return (
 		<header>
-			<select name="algo-speed" id="algo-speed" placeholder="Speed">
-				<option value="slow" disabled>
-					Slow
-				</option>
-				<option value="medium" disabled>
-					Medium
-				</option>
-				<option value="fast" disabled>
-					Fast
-				</option>
+			<select
+				name="algo-speed"
+				id="algo-speed"
+				placeholder="Speed"
+				onChange={(e) => {
+					setSpeed(e.target.value);
+				}}>
+				<option value={50}>Normal</option>
+				<option value={100}>Slow</option>
+				<option value={10}>Fast</option>
 			</select>
 			<select name="algo-additionals" id="algo-additionals">
 				Add
