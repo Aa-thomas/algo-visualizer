@@ -50,58 +50,55 @@ header {
 .wall {
   background-color: grey;
   -webkit-animation: wall 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-  animation: wall 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+          animation: wall 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
 
 /* Transitions */
 .change {
-	-webkit-animation: change 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-	        animation: change 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	-webkit-animation: change 1s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	        animation: change 1s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
 
 @-webkit-keyframes change {
   0% {
-    -webkit-transform: scale(2);
-            transform: scale(2);
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
-    opacity: 0;
-    
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+    opacity: 1;
+    border-radius: 50%;
+    background-color: white;
+  }
+  70%{
+    background-color: cyan;
+    border-radius: 20%;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
   }
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
     opacity: 1;
+    background-color: dodgerblue;
+    border-radius: 0%;
   }
 }
 @keyframes change {
   0% {
     -webkit-transform: scale(0.2);
             transform: scale(0.2);
-    /* -webkit-filter: blur(4px);
-            filter: blur(4px); */
     opacity: 1;
     border-radius: 50%;
+    background-color: white;
   }
-  50%{
+  70%{
     background-color: cyan;
-    border-radius: 50%;
-  }
-  90%{
-    -webkit-transform: scale(1.5);
-    transform: scale(1.5);
-    opacity: 1;
-    background-color: #0e87cc;
-    /* border-radius: 10%; */
+    border-radius: 20%;
+    -webkit-transform: scale(1.8);
+    transform: scale(1.8);
   }
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
-    /* -webkit-filter: blur(0px);
-            filter: blur(0px); */
     opacity: 1;
     background-color: dodgerblue;
     border-radius: 0%;
@@ -112,13 +109,11 @@ header {
   0% {
     -webkit-transform: scale(0.2);
             transform: scale(0.2);
-    /* -webkit-filter: blur(4px);
-            filter: blur(4px); */
     border-radius: 50%;
   }
   50%{
     -webkit-transform: scale(1.4);
-    transform: scale(1.4);
+            transform: scale(1.4);
     border-radius: 20%;
   }
   100% {
