@@ -1,22 +1,43 @@
 export default function dijkstra(grid, sourceNode, targetNode) {
-	// Check that `grid` argument is an Array and not empty
-	if (!Array.isArray(grid))
-		throw new Error('The `grid` argument must be a 2-dimensional Array.');
-	if (!grid.length)
-		throw new Error('The `grid` argument cannot be an empty array.');
-
-	const visitedNodes = [];
-	const unvisitedNodes = flattenGrid(grid);
+	const visitedNodesInOrder = [];
+	let unvisitedNodes = flattenGrid(grid);
+	sourceNode = grid[2][2];
+	sourceNode.distance = 0;
+	// console.table(unvisitedNodes);
 
 	while (unvisitedNodes.length > 0) {
-		// unvisitedNodes[0].distance = 5;
-		orderNodesByDistance(unvisitedNodes);
+		unvisitedNodes = orderNodesByDistance(unvisitedNodes);
 		let currentNode = unvisitedNodes.shift();
-		// currentNode.instance.setVisitedClass('change');
-		visitedNodes.push(currentNode);
+		let neighbors = getNeighbors(currentNode, grid);
+		updateNeighborDistance(neighbors);
+		visitedNodesInOrder.push(currentNode);
 	}
 
-	return visitedNodes;
+	return visitedNodesInOrder;
+}
+
+function updateNeighborDistance(neighbors) {
+	neighbors.forEach((neighbor) => {
+		if (neighbor) neighbor.distance = 1;
+		else return;
+	});
+}
+
+function getNeighbors(currentNode, grid) {
+	let neighbors = [];
+	if (currentNode.row > 0)
+		neighbors.push(grid[currentNode.col][currentNode.row - 1]);
+	if (currentNode.col < grid.length - 1)
+		neighbors.push(grid[currentNode.col + 1][currentNode.row]);
+	if (currentNode.row < grid[0].length)
+		neighbors.push(grid[currentNode.col][currentNode.row + 1]);
+	if (currentNode.col > 0)
+		neighbors.push(grid[currentNode.col - 1][currentNode.row]);
+
+	// animateDijkstra(neighbors, 50);
+
+	console.log('neighbors---->', neighbors);
+	return neighbors;
 }
 
 export function animateDijkstra(visitedNodesInOrder, speed) {
@@ -29,7 +50,7 @@ export function animateDijkstra(visitedNodesInOrder, speed) {
 }
 
 function orderNodesByDistance(arrayOfNodes) {
-	arrayOfNodes.sort(
+	return arrayOfNodes.sort(
 		(prevNode, nextNode) => prevNode.distance - nextNode.distance
 	);
 }

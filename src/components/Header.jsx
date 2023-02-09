@@ -25,9 +25,9 @@ export default function Header({ grid, clearGrid }) {
 				onChange={(e) => {
 					setSpeed(e.target.value);
 				}}>
-				<option value={50}>Normal</option>
-				<option value={100}>Slow</option>
-				<option value={10}>Fast</option>
+				<option value={60}>Normal</option>
+				<option value={120}>Slow</option>
+				<option value={30}>Fast</option>
 			</select>
 			<select name="algo-additionals" id="algo-additionals">
 				Add
